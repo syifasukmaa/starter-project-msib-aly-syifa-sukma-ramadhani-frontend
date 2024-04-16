@@ -4,6 +4,7 @@ import React from 'react';
 const Button = ({ size, variants, className, children, onClick }) => {
   return (
     <button
+      type='submit'
       onClick={onClick}
       className={cn(
         'text-sm font-semibold text-white rounded bg-secondary',

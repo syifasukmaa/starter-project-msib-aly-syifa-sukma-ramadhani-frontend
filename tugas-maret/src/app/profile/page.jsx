@@ -31,7 +31,7 @@ const page = () => {
         <h1 className='mb-8 text-2xl font-bold text-grey'>Ubah Profile</h1>
         <div className='relative flex flex-col lg:gap-8 lg:flex-row'>
           {/* left */}
-          <div className='w-full py-3 border rounded-t-lg lg:bg-transparent bg-purple3 lg:py-6 lg:rounded-lg lg:w-1/4 h-min border-borderGrey'>
+          <div className='w-full py-3 border border-b rounded-t-lg lg:bg-transparent bg-purple3 lg:py-6 lg:rounded-lg lg:w-1/4 h-min border-borderGrey'>
             <ul>
               {profile.map((link) => (
                 <li
@@ -146,6 +146,7 @@ const page = () => {
           </div>
         </div>
       </div>
+      <footer className='py-5 font-medium text-center bg-borderGrey'>© Copyright by Syifamily 2024</footer>
     </>
   );
 };

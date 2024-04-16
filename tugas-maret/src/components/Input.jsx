@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
+import Button from './Button';
 
-const Input = ({ name, placeholder, required, icon, value, type, onChange }) => {
+const Input = ({ name, placeholder, required, icon, value, type = 'text', onChange }) => {
   return (
     <div className='my-3.5'>
       <label
@@ -25,7 +26,7 @@ const Input = ({ name, placeholder, required, icon, value, type, onChange }) => 
           ) : (
             <>
               <input
-                type='text'
+                type={type}
                 name={name}
                 id={name}
                 autoComplete={name}
@@ -35,13 +36,15 @@ const Input = ({ name, placeholder, required, icon, value, type, onChange }) => 
                 onChange={onChange}
               />
               {icon ? (
-                <Image
-                  src={icon}
-                  alt='eye icon'
-                  width={20}
-                  height={20}
-                  className='absolute top-0 bottom-0 my-auto cursor-pointer right-5'
-                />
+                <Button>
+                  <Image
+                    src={icon}
+                    alt='eye icon'
+                    width={20}
+                    height={20}
+                    className='absolute top-0 bottom-0 my-auto cursor-pointer right-5'
+                  />
+                </Button>
               ) : (
                 ''
               )}

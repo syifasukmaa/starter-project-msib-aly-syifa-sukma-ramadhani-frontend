@@ -4,12 +4,35 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Sidebar from '@/components/Sidebar';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    address: '',
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    localStorage.setItem('userData', JSON.stringify(formData));
+  };
+
   const router = useRouter();
   const handleLogin = () => {
     router.push('/login');
   };
+
   return (
     <>
       <div className='flex flex-col lg:flex-row'>
@@ -28,29 +51,35 @@ export default function Home() {
 
             {/* bagian bawah */}
             <div>
-              <form action=''>
+              <form>
                 <Input
                   placeholder={'Input Your Name Here'}
                   name={'name'}
+                  onChange={handleInputChange}
                 />
                 <Input
                   placeholder={'Input Your Address Here'}
                   name={'address'}
                   required={true}
+                  onChange={handleInputChange}
                 />
                 <Input
                   placeholder={'Input Your Email Here'}
                   name={'email'}
+                  onChange={handleInputChange}
                 />
                 <Input
                   placeholder={'Input Your Password Here'}
                   name={'password'}
+                  type='password'
                   icon={'/eye.svg'}
+                  onChange={handleInputChange}
                 />
 
                 <Button
                   size={'large'}
                   variants={'primary'}
+                  onClick={handleRegister}
                 >
                   Register Now
                 </Button>

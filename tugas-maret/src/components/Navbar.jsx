@@ -48,8 +48,8 @@ const Navbar = () => {
           <nav
             className={` ${
               open
-                ? 'bg-purple3 z-50 absolute w-1/2 top-0 right-0 h-full px-10 py-20 shadow-lg shadow-black/20 lg:shadow-none'
-                : 'px-2.5 py-3 justify-start items-start gap-6 lg:flex hidden'
+                ? 'bg-purple3 z-50 absolute w-1/2 top-0 right-0 h-full px-10 py-20 shadow-lg text-white lg:text-black shadow-black/20 lg:shadow-none'
+                : 'px-2.5 py-3 justify-start items-start gap-6 lg:flex hidden text-black'
             }`}
           >
             <ul className='relative flex flex-col items-center justify-center cursor-pointer lg:justify-between lg:flex-row'>
@@ -59,7 +59,7 @@ const Navbar = () => {
                   key={link.id}
                 >
                   <a
-                    className='text-base font-medium leading-normal text-black'
+                    className='text-base font-medium leading-normal'
                     href={link.link}
                   >
                     {link.text}

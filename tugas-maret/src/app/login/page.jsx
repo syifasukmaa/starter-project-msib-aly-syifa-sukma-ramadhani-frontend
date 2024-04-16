@@ -3,16 +3,41 @@ import ActionAuth from '@/components/ActionAuth';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Sidebar from '@/components/Sidebar';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 
 const page = () => {
   const router = useRouter();
-
   const handleRegister = () => {
     router.push('/');
   };
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Lakukan pengecekan login di sini
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    if (storedUserData && storedUserData.email === formData.email && storedUserData.password === formData.password) {
+      // Data login benar, arahkan ke halaman lain
+      router.push('/profile');
+    } else {
+      // Data login tidak valid, tampilkan pesan kesalahan
+      alert('Invalid email or password. Please try again.');
+    }
+  };
+
   return (
     <div className='flex flex-col lg:flex-row'>
       <Sidebar />
@@ -32,16 +57,20 @@ const page = () => {
             <Input
               placeholder={'Input Your Email Here'}
               name={'email'}
+              onChange={handleInputChange}
             />
             <Input
               placeholder={'Input Your Password Here'}
               name={'password'}
+              type='password'
               icon={'/eye.svg'}
+              onChange={handleInputChange}
             />
 
             <Button
               size={'large'}
               variants={'primary'}
+              onClick={handleLogin}
             >
               Login Now
             </Button>
